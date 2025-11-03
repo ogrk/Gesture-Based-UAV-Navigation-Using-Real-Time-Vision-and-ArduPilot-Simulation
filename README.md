@@ -20,6 +20,14 @@ This approach eliminates the need for handheld controllers, providing a **low-co
 
 ---
 
+## 🔗 Model File (Google Drive Link)
+Due to GitHub’s file size limitations, the trained model file has been uploaded to Google Drive.  
+You can download it using the link below and place it in the project directory before running the code.
+
+👉 **Download Model:** [https://drive.google.com/file/d/1AQ3pEfdXgGr7AfehElrzMWBAK1bS7QNt/view?usp=drive_link]
+
+---
+
 ## 🎯 Objectives
 - Enable **real-time gesture-based UAV control** using a live webcam feed.  
 - Implement **DroneKit-ArduPilot** communication for guided-mode flight.  
