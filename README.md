@@ -1,5 +1,9 @@
 # ✋🤖 Gesture-Based UAV Navigation Using Real-Time Vision and ArduPilot Simulation
 
+> ✈️ A Python-based drone control system that uses **MediaPipe hand tracking** and **DroneKit-ArduPilot simulation** to navigate UAVs through **fist gestures** detected from a live webcam feed, enabling intuitive, hands-free flight control.
+
+---
+
 ### 🧠 Department of Computer Science and Business Systems  
 **Mukesh Patel School of Technology Management and Engineering (NMIMS University, Mumbai)**  
 **Authors:**  
@@ -10,67 +14,64 @@
 ---
 
 ## 📖 Overview
-This project introduces a **gesture-based drone navigation system** that allows users to control UAVs using real-time **fist gestures** captured through a webcam feed.  
-The model integrates **Google MediaPipe** for gesture recognition and **DroneKit-Python** with **ArduPilot SITL** simulation to command UAV movements.
-
-By mapping the position of a detected closed fist (left, center, right) within the camera frame, the drone adjusts its flight path dynamically — turning left, right, or moving forward.  
-The system provides an **intuitive, contactless, and low-cost** method for hands-free UAV control, suitable for **disaster response**, **warehouse inspection**, and **assistive robotics**.
+This project introduces a **gesture-controlled UAV navigation system** using **real-time vision-based fist detection**.  
+By integrating **MediaPipe** for gesture tracking and **DroneKit-Python** with **ArduPilot SITL**, the system enables drones to turn left, right, or continue forward based on a user’s hand position.  
+This approach eliminates the need for handheld controllers, providing a **low-cost**, **intuitive**, and **hands-free** way to navigate drones.
 
 ---
 
 ## 🎯 Objectives
-- Enable **real-time gesture-based UAV navigation** using fist detection.
-- Develop a **low-cost**, **vision-based control interface** using open-source tools.
-- Implement **DroneKit-ArduPilot integration** for dynamic heading control.
-- Ensure stable flight behavior and safe landing procedures in simulation.
+- Enable **real-time gesture-based UAV control** using a live webcam feed.  
+- Implement **DroneKit-ArduPilot** communication for guided-mode flight.  
+- Achieve **smooth, stable navigation** without GPS jumps.  
+- Create a **lightweight, portable system** for educational and practical UAV use.
 
 ---
 
 ## 🧩 Methodology
 
-### 1. **Video Frame Acquisition**
-- Real-time feed captured from a mobile device via **Iriun Webcam**.
-- Ensures portability and replicates realistic use cases.
+### 1. Video Frame Capture
+- Live webcam input is streamed via **Iriun Webcam**, simulating mobile camera usage.
 
-### 2. **Frame Preprocessing**
-- Frames resized and optimized using **OpenCV** to improve detection speed and accuracy.
+### 2. Frame Preprocessing
+- Frames resized and converted using **OpenCV** to optimize for speed and clarity.
 
-### 3. **Gesture Detection (MediaPipe)**
-- **MediaPipe Hand Tracking** detects landmarks and identifies closed-fist gestures.
-- The system divides the camera frame into three zones:
+### 3. Gesture Recognition
+- **MediaPipe Hand Tracking** detects hand landmarks.
+- A rule-based classifier identifies **closed-fist gestures**.
+- The camera frame is divided into zones:
   - **Left Zone →** Drone turns right  
   - **Center/Right Zone →** Drone turns left  
-  - **No Gesture →** Drone maintains forward flight
+  - **No Fist Detected →** Drone continues forward
 
-### 4. **Drone Control (DroneKit-Python)**
-- **DroneKit** sends real-time commands to a simulated ArduPilot drone.
-- Movement adjustments are relative (based on heading), not absolute GPS jumps.
-- Operates in **GUIDED mode** for stable flight.
+### 4. UAV Control
+- **DroneKit-Python** commands UAV heading adjustments using MAVLink protocol.
+- Operates in **GUIDED mode** for controlled and stable simulation.
 
-### 5. **Simulation and Testing**
-- Conducted using **ArduPilot SITL** (Software-in-the-Loop) for safe testing.
-- The drone executes continuous flight for one minute while responding to gestures.
-- Includes safe **landing routine** post mission.
+### 5. Real-Time Loop
+- Continuous 60-second control cycle:
+  - Reads camera input → Detects gesture → Sends command → Moves forward
+- Ends with a **safe landing sequence**.
 
 ---
 
 ## 🧱 Software Stack
 
 | Component | Description |
-|------------|--------------|
-| **Programming Language** | Python 3.10 |
+|------------|-------------|
+| **Language** | Python 3.10 |
 | **Gesture Detection** | MediaPipe |
 | **Computer Vision** | OpenCV |
-| **Drone Communication** | DroneKit-Python, MAVLink |
-| **Simulation** | ArduPilot SITL, MAVProxy |
-| **Camera Feed** | Iriun Webcam |
-| **OS / Environment** | Linux / Windows (tested) |
+| **UAV Control** | DroneKit-Python + MAVLink |
+| **Simulation** | ArduPilot SITL + MAVProxy |
+| **Webcam Feed** | Iriun Webcam |
+| **Environment** | Linux/Windows |
 
 ---
 
 ## 📦 Dependencies
 
-Install dependencies with:
+Install all dependencies with:
 
 ```bash
 pip install dronekit pymavlink opencv-python mediapipe
